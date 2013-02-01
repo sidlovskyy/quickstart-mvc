@@ -42,17 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Application.cs" />
-    <Compile Include="Entities\TimeUnit.cs" />
     <Compile Include="Entities\DomainEntity.cs" />
     <Compile Include="Entities\Email.cs" />
     <Compile Include="Entities\EmailType.cs" />
     <Compile Include="Entities\Image.cs" />
-    <Compile Include="Entities\LogEntry.cs" />
-    <Compile Include="Entities\LogLevel.cs" />
-    <Compile Include="Entities\AppOperatingSystem.cs" />
-    <Compile Include="Entities\Pricing.cs" />
-    <Compile Include="Entities\StorageUnit.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Auxilary\PagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

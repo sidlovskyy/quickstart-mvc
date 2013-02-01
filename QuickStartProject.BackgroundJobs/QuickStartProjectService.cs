@@ -32,8 +32,7 @@ namespace QuickStartProject.BackgroundJobs
         }
 
         private void RegisterJobs()
-        {
-            _jobs.Add(new ClearLogsJob());
+        {            
             _jobs.Add(new EmailSenderJob());
         }
 

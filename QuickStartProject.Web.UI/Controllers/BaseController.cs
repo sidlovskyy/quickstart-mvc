@@ -30,7 +30,7 @@ namespace QuickStartProject.Web.UI.Controllers
             base.OnAuthorization(filterContext);
         }
 
-        protected void MergeModelStateOnNextCall()
+        protected void MergeModelState()
         {
             TempData[Constants.MODEL_STATE] = ModelState;
         }

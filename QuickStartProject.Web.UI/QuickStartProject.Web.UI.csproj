@@ -172,15 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\BaseApiController.cs" />
-    <Compile Include="Api\v1\ApplicationController.cs" />
-    <Compile Include="Api\v1\LogController.cs" />
-    <Compile Include="Api\v1\Models\ApplicationModel.cs" />
-    <Compile Include="Api\v1\Models\LogEntryModel.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\PricingController.cs" />
     <Compile Include="Extensions\DateTimeExtensions.cs" />
     <Compile Include="Filters\AjaxOnlyAttribute .cs" />
     <Compile Include="Filters\BindCurrentUserToAttribute.cs" />
@@ -192,13 +187,10 @@
     <Compile Include="Security\SimpleSessionPersister.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
-    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
-    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Extensions\DropDownListExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\HttpPostedFileBaseExtensions.cs" />
@@ -210,11 +202,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\AccountViewModel.cs" />
-    <Compile Include="Models\Application\ApplicationViewModel.cs" />
     <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\ContactUs\ContactUsViewModel.cs" />
-    <Compile Include="Models\Log\IndexViewModel.cs" />
-    <Compile Include="Models\Log\LogSearchCriteria.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -224,8 +213,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
-    <Content Include="Content\images\Logo.png" />
-    <Content Include="Content\jquery.qtip.min.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -257,8 +244,6 @@
     <Content Include="Content\themes\base\jquery.ui.spinner.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
-    <Content Include="Content\jquery.jqplot.css" />
-    <Content Include="Content\jquery.jqplot.min.css" />
     <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
     <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -294,39 +279,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App_Code\Helpers\CssHelper.cshtml" />
-    <Content Include="CodeTemplates\AddView\CSHTML\LogfoxEdit.tt" />
+    <Content Include="CodeTemplates\AddView\CSHTML\QuickStartProjectEdit.tt" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />
     <Content Include="Scripts\jquery-1.9.0.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jqplot\jqplot.barRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.barRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.blockRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.blockRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.canvasAxisLabelRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.canvasAxisLabelRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.canvasOverlay.js" />
-    <Content Include="Scripts\jqplot\jqplot.canvasOverlay.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.canvasTextRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.canvasTextRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.cursor.js" />
-    <Content Include="Scripts\jqplot\jqplot.cursor.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.dateAxisRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.dateAxisRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.dragable.js" />
-    <Content Include="Scripts\jqplot\jqplot.dragable.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.enhancedLegendRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.enhancedLegendRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.funnelRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.funnelRenderer.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.highlighter.js" />
-    <Content Include="Scripts\jqplot\jqplot.highlighter.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.json2.js" />
-    <Content Include="Scripts\jqplot\jqplot.json2.min.js" />
-    <Content Include="Scripts\jqplot\jqplot.pieRenderer.js" />
-    <Content Include="Scripts\jqplot\jqplot.pieRenderer.min.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.js" />
     <Content Include="Scripts\jquery-ui-1.10.0.min.js" />
@@ -334,11 +292,8 @@
     <Content Include="Scripts\jquery-ui-1.8.11.min.js">
       <DependentUpon>jquery-ui-1.8.11.js</DependentUpon>
     </Content>
-    <Content Include="Scripts\jqplot\jquery.jqplot.js" />
-    <Content Include="Scripts\jqplot\jquery.jqplot.min.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.custom.js" />
     <Content Include="Scripts\jquery-ui-1.9.0.custom.min.js" />
-    <Content Include="Scripts\jquery.qtip.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -369,16 +324,8 @@
     <Content Include="App_Code\Helpers\PagingHelper.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\ContactUs\Index.cshtml" />
-    <Content Include="Views\Application\Index.cshtml" />
-    <Content Include="Views\Application\Application.cshtml" />
-    <Content Include="Views\Application\DeleteConfirm.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Log\Index.cshtml" />
-    <Content Include="Views\Log\Search.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Pricing\Index.cshtml" />
-    <Content Include="Views\Log\Details.cshtml" />
-    <Content Include="Views\Emails\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeTemplates\AddController\" />

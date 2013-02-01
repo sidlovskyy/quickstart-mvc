@@ -50,12 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Maps\ApplicationMap.cs" />
     <Compile Include="Maps\EmailMap.cs" />
-    <Compile Include="Maps\LogEntryMap.cs" />
-    <Compile Include="Maps\PricingMap.cs" />
-    <Compile Include="Maps\StorageUnitMap.cs" />
-    <Compile Include="Maps\TimeUnitMap.cs" />
     <Compile Include="Maps\UserMap.cs" />
     <Compile Include="Maps\ImageMap.cs" />
     <Compile Include="NHRepository.cs" />

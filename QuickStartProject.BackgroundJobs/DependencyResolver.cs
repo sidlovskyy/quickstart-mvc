@@ -33,14 +33,8 @@ namespace QuickStartProject.BackgroundJobs
 
             //Register repositories
             builder.RegisterType<IntIdNHRepository<Image>>().As<IRepository<Image, int>>();
-            builder.RegisterType<GuidIdNHRepository<User>>().As<IRepository<User, Guid>>();
-            builder.RegisterType<LongIdNHRepository<LogEntry>>().As<IRepository<LogEntry, long>>();
-            builder.RegisterType<GuidIdNHRepository<Application>>().As<IRepository<Application, Guid>>();
-            builder.RegisterType<IntIdNHRepository<Email>>().As<IRepository<Email, int>>();
-
-            builder.RegisterType<IntIdNHRepository<Pricing>>().As<IRepository<Pricing, int>>();
-            builder.RegisterType<IntIdNHRepository<TimeUnit>>().As<IRepository<TimeUnit, int>>();
-            builder.RegisterType<IntIdNHRepository<StorageUnit>>().As<IRepository<StorageUnit, int>>();
+            builder.RegisterType<GuidIdNHRepository<User>>().As<IRepository<User, Guid>>();            
+            builder.RegisterType<IntIdNHRepository<Email>>().As<IRepository<Email, int>>();            
 
             builder.RegisterType<PostalMailingService>().As<IMailingService>();
 

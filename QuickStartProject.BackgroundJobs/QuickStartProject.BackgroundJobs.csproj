@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DependencyResolver.cs" />
-    <Compile Include="Jobs\ClearLogsJob.cs" />
     <Compile Include="Jobs\EmailSenderJob.cs" />
     <Compile Include="Jobs\JobBase.cs" />
     <Compile Include="QuickStartProjectService.cs">

@@ -28,14 +28,14 @@ namespace QuickStartProject.Web.UI.Controllers
             if (!ModelState.IsValid)
             {
                 ShowError("Please provide your username and password!");
-                MergeModelStateOnNextCall();
+                MergeModelState();
                 return RedirectToAction("Logon");
             }
             var userItem = _userRepository.GetOne(u => u.Email == accountModel.Username);
             if (!AuthorizeUser(accountModel, userItem))
             {
                 ShowError("Invalid username or password");
-                MergeModelStateOnNextCall();
+                MergeModelState();
                 return RedirectToAction("Logon");
             }
             return RedirectToAction("Index", "Home");
@@ -70,14 +70,14 @@ namespace QuickStartProject.Web.UI.Controllers
             if (!ModelState.IsValid)
             {
                 ShowError("Please provide all required fields!");
-                MergeModelStateOnNextCall();
+                MergeModelState();
                 return RedirectToAction("Register");
             }
             var userItem = _userRepository.GetOne(u => u.Email == user.Email);
             if (userItem != null)
             {
                 ShowError("User with the same email already exist!");
-                MergeModelStateOnNextCall();
+                MergeModelState();
                 return RedirectToAction("Register");
             }
             _userRepository.Save(ToUser(user));

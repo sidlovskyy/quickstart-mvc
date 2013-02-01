@@ -12,9 +12,7 @@ namespace QuickStartProject.Data.NHibernate.Maps
             Map(x => x.Email).UniqueKey("Email").Not.Nullable().Length(200);
             Map(x => x.Password).Not.Nullable().Length(120);
             Map(x => x.Salt).Not.Nullable().Length(120);
-            Map(x => x.Company).Not.Nullable().Length(200);
-            Map(x => x.RetensionPeriodInDays).Nullable();
-            HasMany(x => x.Applications).Inverse().KeyColumn("OwnerId").Cascade.All();
+            Map(x => x.Company).Not.Nullable().Length(200);                       
         }
     }
 }

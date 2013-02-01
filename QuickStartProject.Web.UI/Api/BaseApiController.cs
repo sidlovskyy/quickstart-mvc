@@ -2,20 +2,11 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using QuickStartProject.Domain.Entities;
-using QuickStartProject.Domain.Repository;
 
 namespace QuickStartProject.Web.UI.Api
 {
     public class BaseApiController : ApiController
     {
-        protected readonly IRepository<Application, Guid> ApplicationRepository;
-
-        public BaseApiController(IRepository<Application, Guid> applicationRepository)
-        {
-            ApplicationRepository = applicationRepository;
-        }
-
         protected HttpResponseMessage Result<T>(T value)
         {
             return Request.CreateResponse(HttpStatusCode.OK, value);
@@ -66,19 +57,6 @@ namespace QuickStartProject.Web.UI.Api
         protected HttpResponseMessage BadRequest(object value)
         {
             return Request.CreateResponse(HttpStatusCode.BadRequest, value);
-        }
-
-        protected bool AccountAndApplicationCodesValid(string accIdString, string appIdString)
-        {
-            bool isValid = false;
-            Guid accId;
-            Guid appId;
-            if (Guid.TryParse(accIdString, out accId) && Guid.TryParse(appIdString, out appId))
-            {
-                Application application = ApplicationRepository.GetById(appId);
-                isValid = (application != null) && (application.Owner.Id == accId);
-            }
-            return isValid;
         }
     }
 }

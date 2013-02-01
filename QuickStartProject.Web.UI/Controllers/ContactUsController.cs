@@ -27,7 +27,7 @@ namespace QuickStartProject.Web.UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                MergeModelStateOnNextCall();
+                MergeModelState();
                 return RedirectToAction("Index");
             }
 
