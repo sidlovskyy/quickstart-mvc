@@ -11,6 +11,6 @@ namespace QuickStartProject.Data.EntityFramework
 
 		public DbSet<User> Users { get; set; }
 		public DbSet<Email> Emails { get; set; }
-        public DbSet<Email> Images { get; set; }
+        public DbSet<Image> Images { get; set; }
 	}
 }

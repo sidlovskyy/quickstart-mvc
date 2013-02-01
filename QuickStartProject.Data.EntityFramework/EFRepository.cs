@@ -10,9 +10,7 @@ namespace QuickStartProject.Data.EntityFramework
 	public abstract class EFRepository<TEntity, TId> : IRepository<TEntity, TId>
         where TEntity : DomainEntity<TId>
 	{
-		protected DbContext _context;
-
-		protected EFRepository() : this(new QuickStartProjectDbContext()) { }
+		protected DbContext _context;		
 
 		protected EFRepository(DbContext context)
 		{
@@ -53,7 +51,7 @@ namespace QuickStartProject.Data.EntityFramework
 
 	    public TEntity GetOne(Expression<Func<TEntity, bool>> @where)
 	    {
-            TEntity entity = _context.Set<TEntity>().Single(@where);
+            TEntity entity = _context.Set<TEntity>().FirstOrDefault(@where);
             return entity;
 	    }
 
@@ -91,7 +89,11 @@ namespace QuickStartProject.Data.EntityFramework
 
     public class LongIdEFRepository<TEntity> : EFRepository<TEntity, long>
         where TEntity : DomainEntity<long>
-    {       
+    {
+        public LongIdEFRepository(DbContext context) : base(context)
+        {
+        }
+
         public override TEntity GetById(long id)
         {
             return _context.Set<TEntity>().FirstOrDefault(e => e.Id == id);
@@ -101,6 +103,10 @@ namespace QuickStartProject.Data.EntityFramework
     public class GuidIdEFRepository<TEntity> : EFRepository<TEntity, Guid>
         where TEntity : DomainEntity<Guid>
     {
+        public GuidIdEFRepository(DbContext context) : base(context)
+        {
+        }
+
         public override TEntity GetById(Guid id)
         {
             return _context.Set<TEntity>().FirstOrDefault(e => e.Id == id);
@@ -110,6 +116,10 @@ namespace QuickStartProject.Data.EntityFramework
     public class IntIdEFRepository<TEntity> : EFRepository<TEntity, int>
         where TEntity : DomainEntity<int>
     {
+        public IntIdEFRepository(DbContext context) : base(context)
+        {
+        }
+
         public override TEntity GetById(int id)
         {
             return _context.Set<TEntity>().FirstOrDefault(e => e.Id == id);

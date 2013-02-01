@@ -339,6 +339,10 @@
       <Project>{219AFC5B-5B94-4C54-8B42-D7050F1FAD85}</Project>
       <Name>QuickStartProject.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QuickStartProject.Data.EntityFramework\QuickStartProject.Data.EntityFramework.csproj">
+      <Project>{596b66e6-c379-4523-bcbd-fbe4d07774b9}</Project>
+      <Name>QuickStartProject.Data.EntityFramework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\QuickStartProject.Data.NHibernate\QuickStartProject.Data.NHibernate.csproj">
       <Project>{c38e941d-12bd-4428-b182-526f646ce582}</Project>
       <Name>QuickStartProject.Data.NHibernate</Name>

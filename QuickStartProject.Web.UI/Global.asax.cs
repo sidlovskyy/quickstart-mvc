@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
@@ -12,6 +13,7 @@ using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
+using QuickStartProject.Data.EntityFramework;
 using QuickStartProject.Data.NHibernate;
 using QuickStartProject.Domain.Entities;
 using QuickStartProject.Domain.Repository;
@@ -39,6 +41,8 @@ namespace QuickStartProject.Web.UI
         {
             var builder = new ContainerBuilder();
 
+            TryInitializeDatabase();
+            /*
             // Register ISessionFactory as Singleton 
             builder.Register(x => Fluently.Configure()
                                       .Database(
@@ -50,9 +54,13 @@ namespace QuickStartProject.Web.UI
                                       .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                                       .BuildSessionFactory())
                 .SingleInstance();
+            
 
             // Register ISession as instance per web request
             builder.Register(x => x.Resolve<ISessionFactory>().OpenSession())
+                .InstancePerHttpRequest();*/
+
+            builder.RegisterType<QuickStartProjectDbContext>().As<DbContext>()
                 .InstancePerHttpRequest();
 
             // Register all controllers
@@ -62,9 +70,9 @@ namespace QuickStartProject.Web.UI
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             //Register repositories
-            builder.RegisterType<IntIdNHRepository<Image>>().As<IRepository<Image, int>>();
-            builder.RegisterType<GuidIdNHRepository<User>>().As<IRepository<User, Guid>>();            
-            builder.RegisterType<IntIdNHRepository<Email>>().As<IRepository<Email, int>>();            
+            builder.RegisterType<IntIdEFRepository<Image>>().As<IRepository<Image, int>>();
+            builder.RegisterType<GuidIdEFRepository<User>>().As<IRepository<User, Guid>>();            
+            builder.RegisterType<IntIdEFRepository<Email>>().As<IRepository<Email, int>>();            
 
             builder.RegisterType<PostalMailingService>().As<IMailingService>();
 
@@ -87,13 +95,24 @@ namespace QuickStartProject.Web.UI
             FillDefaultDatbaseData();
         }
 
+        private static void TryInitializeDatabase()
+        {
+            Database.SetInitializer(new QuickStartProjectDbInitializer());
+
+            // Forces initialization of database on model changes.
+            using (var context = new QuickStartProjectDbContext())
+            {
+                context.Database.Initialize(force: true);
+            }
+        }
+
         private void FillDefaultDatbaseData()
         {
             //username
             const string userEmail = "QuickStartProject.dev@gmail.com";
-
-            ISession dbSession = DependencyResolver.Current.GetService<ISession>();
-            IRepository<User, Guid> userRepository = new GuidIdNHRepository<User>(dbSession);
+            
+            
+            IRepository<User, Guid> userRepository = new GuidIdEFRepository<User>(new QuickStartProjectDbContext());
             if (UserWithEmailExists(userRepository, userEmail))
             {
                 return;

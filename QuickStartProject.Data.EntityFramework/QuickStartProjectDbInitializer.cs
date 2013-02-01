@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
+using QuickStartProject.Data.EntityFramework.Migrations;
 
 namespace QuickStartProject.Data.EntityFramework
 {
-	public class WebScrapperDbInitializer : DropCreateDatabaseIfModelChanges<QuickStartProjectDbContext> {} //MigrateDatabaseToLatestVersion<QuickStartProject, Configuration> { }
+    public class QuickStartProjectDbInitializer : MigrateDatabaseToLatestVersion<QuickStartProjectDbContext, Configuration> { }
 }
