@@ -1,16 +1,16 @@
 ﻿using System;
 
-namespace Logfox.Domain.Entities
+namespace QuickStartProject.Domain.Entities
 {
-    public class LogEntry: LongIdDomainEntity
+    public class LogEntry : LongIdDomainEntity
     {
-        private DateTime _createdDate;
         private Application _application;
+        private DateTime _createdDate;
+        private string _deviceId;
+        private string _deviceType;
         private LogLevel _level;
         private string _message;
         private string _os;
-        private string _deviceType;
-        private string _deviceId;
 
         protected LogEntry()
         {
@@ -19,7 +19,7 @@ namespace Logfox.Domain.Entities
 
         public LogEntry(Application app, LogLevel level, string message, string os, string deviceType, string deviceId)
         {
-            if(app == null)
+            if (app == null)
             {
                 throw new ArgumentNullException("app");
             }

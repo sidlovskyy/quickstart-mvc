@@ -1,20 +1,30 @@
 ﻿using System;
 using System.Linq;
-using Logfox.Common;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
+using QuickStartProject.Common;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
 
-namespace Logfox.BackgroundJobs.Jobs
-{	
+namespace QuickStartProject.BackgroundJobs.Jobs
+{
     internal class ClearLogsJob : JobBase
     {
+        private IRepository<LogEntry, long> _logRepository;
         private IRepository<User, Guid> _userRepository;
-        private IRepository<LogEntry, long> _logRepository;        
+
+        protected override string Name
+        {
+            get { return "Clear Logs"; }
+        }
+
+        protected override string CronSchedule
+        {
+            get { return GetAppConfigValue("QuickStartProject.ClearlogsJobSchedule"); }
+        }
 
         //NOTE: to make this job run really fast we may create stored procedure for it.
         public override void Execute()
         {
-	        ResolveDependencies();
+            ResolveDependencies();
 
             var users = _userRepository.All();
             foreach (var user in users)
@@ -27,23 +37,23 @@ namespace Logfox.BackgroundJobs.Jobs
             }
         }
 
-	    private void ResolveDependencies()
-	    {
-			_userRepository = DependencyResolver.Resolve<IRepository<User, Guid>>();
-			_logRepository = DependencyResolver.Resolve<IRepository<LogEntry, long>>();
-	    }
+        private void ResolveDependencies()
+        {
+            _userRepository = DependencyResolver.Resolve<IRepository<User, Guid>>();
+            _logRepository = DependencyResolver.Resolve<IRepository<LogEntry, long>>();
+        }
 
-	    private void ProcessApplicationsForUser(User user, int retentionPeriodInDays)
+        private void ProcessApplicationsForUser(User user, int retentionPeriodInDays)
         {
             try
             {
                 Log.Info("Start processing log deletion for user {0} (id: {1})", user.Name, user.Id);
-                
+
                 TryProcessApplicationForUser(user, retentionPeriodInDays);
-                
+
                 Log.Info("End processing log deletion for user {0} (id: {1})", user.Name, user.Id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error(
                     string.Format("Exception while processing log deletion for user {0} (id: {1})", user.Name, user.Id),
@@ -65,7 +75,7 @@ namespace Logfox.BackgroundJobs.Jobs
             try
             {
                 Log.Info("Start processing log deletion for app id {0} (user id: {1})", app.Id, app.Owner.Id);
-                
+
                 TryProcessLogsForApplication(app, clearBeforeDate);
 
                 Log.Info("End processing log deletion for app id {0} (user id: {1})", app.Id, app.Owner.Id);
@@ -73,7 +83,8 @@ namespace Logfox.BackgroundJobs.Jobs
             catch (Exception ex)
             {
                 Log.Error(
-                    string.Format("Exception while processing log deletion for app id {0} (user id: {1})", app.Id, app.Owner.Id),
+                    string.Format("Exception while processing log deletion for app id {0} (user id: {1})", app.Id,
+                                  app.Owner.Id),
                     ex);
             }
         }
@@ -91,16 +102,6 @@ namespace Logfox.BackgroundJobs.Jobs
             {
                 _logRepository.Delete(logId);
             }
-        }
-
-        protected override string Name
-        {
-            get { return "Clear Logs"; }
-        }
-
-        protected override string CronSchedule
-        {
-            get { return GetAppConfigValue("LogFox.ClearlogsJobSchedule"); }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Logfox.Domain.Entities
+﻿namespace QuickStartProject.Domain.Entities
 {
     public enum LogLevel
     {

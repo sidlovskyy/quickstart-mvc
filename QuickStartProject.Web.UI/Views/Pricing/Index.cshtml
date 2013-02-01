@@ -28,15 +28,15 @@
     
     <script type="text/javascript">
 
-        $(function () {
+        $(function() {
 
             var priceCalculationInfo, storageIndex = 0, storageSlider, storageHandle, timeIndex = 0, timeSlider, timeHandle;
-            
+
             function storageSliderUpdated(event, ui) {
                 storageIndex = ui.value;
                 storageSliderUpdateValue();
             }
-            
+
             function storageSliderUpdateValue() {
                 var storageValue = getStorageValueByIndex(storageIndex + 1);
                 storageHandle.qtip('option', 'content.text', '' + storageValue);
@@ -47,7 +47,7 @@
                 timeIndex = ui.value;
                 timeSliderUpdateValue();
             }
-            
+
             function timeSliderUpdateValue() {
                 var timeValue = getTimeValueByIndex(timeIndex + 1);
                 timeHandle.qtip('option', 'content.text', '' + timeValue);
@@ -56,7 +56,7 @@
 
             function getStorageValueByIndex(index) {
                 var storageValue = 'None';
-                $.each(priceCalculationInfo.storageItems, function (i, value) {
+                $.each(priceCalculationInfo.storageItems, function(i, value) {
                     if (value.index == index) {
                         storageValue = value.value;
                     }
@@ -66,32 +66,32 @@
 
             function getTimeValueByIndex(index) {
                 var timeValue = 'None';
-                $.each(priceCalculationInfo.timeItems, function (i, value) {
+                $.each(priceCalculationInfo.timeItems, function(i, value) {
                     if (value.index == index) {
                         timeValue = value.value;
                     }
                 });
                 return timeValue;
             }
-            
+
             function getPriceValueByIndex(sIndex, tIndex) {
                 var priceValue = 'None';
-                $.each(priceCalculationInfo.priceItems, function (i, value) {
+                $.each(priceCalculationInfo.priceItems, function(i, value) {
                     if (value.storageIndex == sIndex && value.timeIndex == tIndex) {
                         priceValue = value.value;
                     }
                 });
                 return priceValue;
             }
-            
+
             function initSliders() {
                 $.ajax('@Url.Action("GetPricing")', {
                     method: 'GET',
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         debugger;
                         priceCalculationInfo = data;
-                        
+
                         storageSlider = $('#sliderStorage').slider({
                             slide: storageSliderUpdated,
                             orientation: "vertical",
@@ -144,7 +144,7 @@
 
             initSliders();
         });
-    
+
     </script>
 
 }

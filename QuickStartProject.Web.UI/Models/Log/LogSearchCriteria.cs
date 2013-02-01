@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Logfox.Domain.Entities;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Web.UI.Models.Log
+namespace QuickStartProject.Web.UI.Models.Log
 {
     public class LogSearchCriteria
     {
@@ -17,7 +17,7 @@ namespace Logfox.Web.UI.Models.Log
 
         public List<string> AvailableOperatingSystems { get; set; }
         public List<string> AvailableDeviceTypes { get; set; }
-        public List<string> AvailableDeviceIds { get; set; }        
+        public List<string> AvailableDeviceIds { get; set; }
         public Dictionary<Guid, string> AvailableApplications { get; set; }
     }
 }

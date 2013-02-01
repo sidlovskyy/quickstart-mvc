@@ -1,15 +1,15 @@
-﻿namespace Logfox.Web.UI.Extensions
+﻿namespace QuickStartProject.Web.UI.Extensions
 {
     public static class StringExtensions
     {
         public static string TruncateToLength(this string str, int length)
         {
-            if(string.IsNullOrEmpty(str))
+            if (string.IsNullOrEmpty(str))
             {
                 return str;
             }
 
-            if(str.Length <= length)
+            if (str.Length <= length)
             {
                 return str;
             }

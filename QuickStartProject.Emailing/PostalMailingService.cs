@@ -1,16 +1,22 @@
-﻿using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Emailing.Models;
+﻿using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Emailing.Models;
 
-namespace Logfox.Emailing
+namespace QuickStartProject.Emailing
 {
-	public class PostalMailingService : PostalMailingServiceBase, IMailingService
-	{
-		public PostalMailingService(IRepository<Email, int> emailRepository) : base(emailRepository) { }
+    public class PostalMailingService : PostalMailingServiceBase, IMailingService
+    {
+        public PostalMailingService(IRepository<Email, int> emailRepository) : base(emailRepository)
+        {
+        }
 
-		public void SentContactUsEmail(ContactUsEmailModel model)
-		{			
-			SendEmail(model);
-		}
-	}
+        #region IMailingService Members
+
+        public void SentContactUsEmail(ContactUsEmailModel model)
+        {
+            SendEmail(model);
+        }
+
+        #endregion
+    }
 }

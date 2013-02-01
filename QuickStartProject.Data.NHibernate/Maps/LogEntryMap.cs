@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
-using Logfox.Domain.Entities;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Data.NHibernate.Maps
+namespace QuickStartProject.Data.NHibernate.Maps
 {
     public class LogEntryMap : ClassMap<LogEntry>
     {
@@ -15,6 +15,6 @@ namespace Logfox.Data.NHibernate.Maps
             Map(x => x.Message).Length(3000).Not.Nullable();
             References(x => x.Application, "ApplicationId").Not.Nullable();
             Map(x => x.CreatedDate).Not.Nullable();
-        }      
+        }
     }
 }

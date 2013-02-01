@@ -1,20 +1,20 @@
 ﻿using System.Configuration;
 using System.Web.Mvc;
-using Logfox.Web.UI.Security;
+using QuickStartProject.Web.UI.Security;
 
-namespace Logfox.Web.UI.Controllers
+namespace QuickStartProject.Web.UI.Controllers
 {
     public abstract class BaseController : Controller
     {
-		protected void ShowError(string message)
-		{
-			TempData[Constants.ERROR] = message;
-		}
+        protected void ShowError(string message)
+        {
+            TempData[Constants.ERROR] = message;
+        }
 
-		protected void ShowInformation(string message)
-		{
-			TempData[Constants.INFO] = message;
-		}
+        protected void ShowInformation(string message)
+        {
+            TempData[Constants.INFO] = message;
+        }
 
         protected string GetAppSettingsValue(string key)
         {

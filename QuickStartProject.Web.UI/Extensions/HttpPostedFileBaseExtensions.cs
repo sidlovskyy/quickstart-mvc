@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Web;
-using Logfox.Domain.Entities;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Web.UI.Extensions
+namespace QuickStartProject.Web.UI.Extensions
 {
     public static class HttpPostedFileBaseExtensions
     {
@@ -32,17 +32,17 @@ namespace Logfox.Web.UI.Extensions
             return photoContent;
         }
 
-		public static Image ToImage(this HttpPostedFileBase postFile)
-		{
-			Image image = null;
-			byte[] imageContent = postFile.ToByteArray();
-			if (imageContent != null)
-			{
-				image = new Image();
-				image.Content = imageContent;
-				image.ContentType = postFile.ContentType;
-			}
-			return image;
-		}
+        public static Image ToImage(this HttpPostedFileBase postFile)
+        {
+            Image image = null;
+            byte[] imageContent = postFile.ToByteArray();
+            if (imageContent != null)
+            {
+                image = new Image();
+                image.Content = imageContent;
+                image.ContentType = postFile.ContentType;
+            }
+            return image;
+        }
     }
 }

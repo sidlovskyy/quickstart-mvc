@@ -3,25 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Mvc;
-using Logfox.Domain.Auxilary;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Web.UI.Extensions;
-using Logfox.Web.UI.Filters;
-using Logfox.Web.UI.Models.Log;
+using QuickStartProject.Domain.Auxilary;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Web.UI.Extensions;
+using QuickStartProject.Web.UI.Filters;
+using QuickStartProject.Web.UI.Models.Log;
 
-namespace Logfox.Web.UI.Controllers
+namespace QuickStartProject.Web.UI.Controllers
 {
     [Authorization]
     public class LogController : BaseController
     {
         private const int LogsPerPage = 20;
 
-        private readonly IRepository<LogEntry, long> _logRepository;
         private readonly IRepository<Application, Guid> _applicationsRepository;
+        private readonly IRepository<LogEntry, long> _logRepository;
 
         public LogController(
-            IRepository<LogEntry, long> logRepository, 
+            IRepository<LogEntry, long> logRepository,
             IRepository<Application, Guid> applicationsRepository)
         {
             _logRepository = logRepository;
@@ -59,14 +59,14 @@ namespace Logfox.Web.UI.Controllers
             exportBody.AppendLine("Application,Level,Message,OS,DeviceType,DeviceId,Posted");
             foreach (LogEntry log in logs)
             {
-                string logLine = string.Format("{0},{1},{2},{3},{4},{5},{6}", 
-                    log.Application.Name, 
-                    log.Level.GetDescription(), 
-                    log.Message,
-                    log.OS,
-                    log.DeviceType,
-                    log.DeviceId,
-                    log.CreatedDate.ToString("mm/dd/yyyy hh:MM:ss tt"));
+                string logLine = string.Format("{0},{1},{2},{3},{4},{5},{6}",
+                                               log.Application.Name,
+                                               log.Level.GetDescription(),
+                                               log.Message,
+                                               log.OS,
+                                               log.DeviceType,
+                                               log.DeviceId,
+                                               log.CreatedDate.ToString("mm/dd/yyyy hh:MM:ss tt"));
 
                 exportBody.AppendLine(logLine);
             }
@@ -77,7 +77,7 @@ namespace Logfox.Web.UI.Controllers
 
         private static byte[] GetBytes(string str)
         {
-            byte[] bytes = new byte[str.Length * sizeof(char)];
+            byte[] bytes = new byte[str.Length*sizeof (char)];
             Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
             return bytes;
         }
@@ -85,9 +85,9 @@ namespace Logfox.Web.UI.Controllers
         [HttpGet]
         [BindCurrentUserTo("currentUser")]
         public ActionResult Details(User currentUser, long id)
-        {            
+        {
             LogEntry log = _logRepository.GetById(id);
-            if((log == null) || !currentUser.IsOwnerOf(log))
+            if ((log == null) || !currentUser.IsOwnerOf(log))
             {
                 ShowError("Log is not found or not available.");
                 return RedirectToAction("Index");
@@ -179,8 +179,8 @@ namespace Logfox.Web.UI.Controllers
         private static List<string> GetOperatingSystemsAvailable(IQueryable<LogEntry> logs)
         {
             List<string> operatingSystems = logs
-                .Select(log => log.OS)                
-                .Distinct()                
+                .Select(log => log.OS)
+                .Distinct()
                 .ToList();
 
             operatingSystems.Sort();
@@ -210,7 +210,7 @@ namespace Logfox.Web.UI.Controllers
         }
 
         private Dictionary<Guid, string> GetAvailableApplications(User user)
-        {   
+        {
             Dictionary<Guid, string> applications = _applicationsRepository
                 .Query(app => app.Owner.Id == user.Id)
                 .ToDictionary(app => app.Id, app => app.Name);

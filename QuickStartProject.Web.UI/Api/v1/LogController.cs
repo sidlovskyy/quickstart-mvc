@@ -2,23 +2,23 @@
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Web.Http;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Web.UI.Api.v1.Models;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Web.UI.Api.v1.Models;
 
-namespace Logfox.Web.UI.Api.v1
+namespace QuickStartProject.Web.UI.Api.v1
 {
-    [KnownType(typeof(LogEntryModel))]
+    [KnownType(typeof (LogEntryModel))]
     public class LogController : BaseApiController
     {
-        private readonly IRepository<LogEntry, long> _logRepository;        
+        private readonly IRepository<LogEntry, long> _logRepository;
 
         public LogController(
-            IRepository<LogEntry, long> logRepository, 
+            IRepository<LogEntry, long> logRepository,
             IRepository<Application, Guid> applicationRepository)
-            :base(applicationRepository)
+            : base(applicationRepository)
         {
-            _logRepository = logRepository;            
+            _logRepository = logRepository;
         }
 
         //url for test
@@ -31,20 +31,20 @@ namespace Logfox.Web.UI.Api.v1
             }
 
             var logEntry = _logRepository.GetById(id);
-            if(logEntry == null)
+            if (logEntry == null)
             {
                 return NotFound(string.Format("Log with id {0} is not found", id));
             }
 
             var log = new LogEntryModel
-            {
-                CreatedDate = logEntry.CreatedDate,
-                DeviceId = logEntry.DeviceId,
-                DeviceType = logEntry.DeviceType,
-                Level = logEntry.Level,
-                Message = logEntry.Message,
-                OS = logEntry.OS
-            };
+                          {
+                              CreatedDate = logEntry.CreatedDate,
+                              DeviceId = logEntry.DeviceId,
+                              DeviceType = logEntry.DeviceType,
+                              Level = logEntry.Level,
+                              Message = logEntry.Message,
+                              OS = logEntry.OS
+                          };
 
             return Result(log);
         }
@@ -56,7 +56,7 @@ namespace Logfox.Web.UI.Api.v1
                 return NotFound("Account or it's application is not found");
             }
 
-            if(log == null)
+            if (log == null)
             {
                 return BadRequest("Log is empty");
             }
@@ -64,20 +64,20 @@ namespace Logfox.Web.UI.Api.v1
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }           
+            }
 
             var appId = new Guid(app);
             Application application = ApplicationRepository.GetById(appId);
-            
-            if(application.LogLevel > log.Level)
+
+            if (application.LogLevel > log.Level)
             {
                 return BadRequest("The log was not saved as it's level is lower then configured for application.");
             }
-            
+
             var logEntry = new LogEntry(application, log.Level, log.Message, log.OS, log.DeviceType, log.DeviceId);
             logEntry = _logRepository.Save(logEntry);
 
-            string locationUrl = Url.Route(null, new { acc, app, id = logEntry.Id });
+            string locationUrl = Url.Route(null, new {acc, app, id = logEntry.Id});
             var location = new Uri(Request.RequestUri, locationUrl);
             return Result(location);
         }

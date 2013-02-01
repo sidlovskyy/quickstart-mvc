@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Logfox.Domain.Entities
+namespace QuickStartProject.Domain.Entities
 {
     public enum AppOperatingSystem
     {
@@ -10,7 +10,6 @@ namespace Logfox.Domain.Entities
         MacOs = 3,
         Android = 4,
         iOS = 5,
-        [Description("Windows Phone")]
-        WindowsPhone = 6
+        [Description("Windows Phone")] WindowsPhone = 6
     }
 }

@@ -1,10 +1,21 @@
-﻿namespace Logfox.Domain.Entities
+﻿namespace QuickStartProject.Domain.Entities
 {
     public class Pricing : IntIdDomainEntity
     {
-        private TimeUnit _timeUnit;
         private StorageUnit _storageUnit;
+        private TimeUnit _timeUnit;
         private string _value;
+
+        public Pricing()
+        {
+        }
+
+        public Pricing(TimeUnit timeUnit, StorageUnit storageUnit, string value)
+        {
+            _timeUnit = timeUnit;
+            _storageUnit = storageUnit;
+            _value = value;
+        }
 
         public virtual TimeUnit TimeUnit
         {
@@ -22,15 +33,6 @@
         {
             get { return _value; }
             set { _value = value; }
-        }
-
-        public Pricing() { }
-
-        public Pricing (TimeUnit timeUnit, StorageUnit storageUnit, string value)
-        {
-            _timeUnit = timeUnit;
-            _storageUnit = storageUnit;
-            _value = value;
         }
     }
 }

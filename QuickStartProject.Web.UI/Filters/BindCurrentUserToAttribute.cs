@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Web.Mvc;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
 
-namespace Logfox.Web.UI.Filters
+namespace QuickStartProject.Web.UI.Filters
 {
     public class BindCurrentUserToAttribute : ActionFilterAttribute
     {
-        public IRepository<User, Guid> UserRepository;
-
         private readonly string _bindToVariable;
+        public IRepository<User, Guid> UserRepository;
 
         public BindCurrentUserToAttribute()
             : this("currentUser")
-        {}
+        {
+        }
 
         public BindCurrentUserToAttribute(string bindToVariable)
         {
@@ -25,7 +25,7 @@ namespace Logfox.Web.UI.Filters
             //TODO: temporary fix. IoC should resolve it automatically
             UserRepository = DependencyResolver.Current.GetService<IRepository<User, Guid>>();
 
-            if(filterContext.HttpContext.Request.IsAuthenticated)
+            if (filterContext.HttpContext.Request.IsAuthenticated)
             {
                 User currentUser = GetCurrentUser(filterContext);
                 AddOrUpdateCurrentUserParam(filterContext, currentUser);
@@ -51,6 +51,6 @@ namespace Logfox.Web.UI.Filters
             {
                 filterContext.ActionParameters.Add(_bindToVariable, currentUser);
             }
-        }        
+        }
     }
 }

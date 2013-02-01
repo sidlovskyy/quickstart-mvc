@@ -5,7 +5,7 @@ using System.Globalization;
 using log4net;
 using log4net.Config;
 
-namespace Logfox.Common
+namespace QuickStartProject.Common
 {
     public static class Log
     {
@@ -48,7 +48,7 @@ namespace Logfox.Common
                 }
 
                 ILog logger = LogManager.GetLogger(source);
-	            EnsureInitialized();
+                EnsureInitialized();
                 _loggers.Add(source, logger);
                 return logger;
             }
@@ -200,7 +200,6 @@ namespace Logfox.Common
         {
             XmlConfigurator.Configure();
             _logInitialized = true;
-
         }
 
         public static void EnsureInitialized()

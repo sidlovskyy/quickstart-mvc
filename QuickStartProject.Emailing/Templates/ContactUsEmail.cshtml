@@ -1,20 +1,20 @@
-﻿@model Logfox.Emailing.Models.ContactUsEmailModel
+﻿@model Models.ContactUsEmailModel
 To: @Model.To
 From: @Model.From
 Subject: @Model.Subject
 
 <html>
-	<head>
-		<title>Contact Us</title>
-	</head>
-	<body>
-		<div>
+    <head>
+        <title>Contact Us</title>
+    </head>
+    <body>
+        <div>
             <b>From:</b>
             @Model.SenderName
         </div>
-		<div>
-			<b>Message:</b>
-			@Model.Message
-		</div>
-	</body>
+        <div>
+            <b>Message:</b>
+            @Model.Message
+        </div>
+    </body>
 </html>

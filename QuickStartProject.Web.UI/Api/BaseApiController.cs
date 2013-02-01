@@ -2,10 +2,10 @@
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
 
-namespace Logfox.Web.UI.Api
+namespace QuickStartProject.Web.UI.Api
 {
     public class BaseApiController : ApiController
     {

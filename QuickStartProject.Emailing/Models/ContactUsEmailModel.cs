@@ -1,23 +1,25 @@
-﻿using Logfox.Domain.Entities;
+﻿using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Emailing.Models
+namespace QuickStartProject.Emailing.Models
 {
     public class ContactUsEmailModel : EmailModel
     {
-		public static ContactUsEmailModel Create()
-		{
-			return new ContactUsEmailModel("ContactUsEmail");
-		}
+        internal ContactUsEmailModel(string templateName) : base(templateName)
+        {
+        }
 
-	    internal ContactUsEmailModel(string templateName) : base(templateName) { }
+        public string SenderName { get; set; }
 
-	    public string SenderName { get; set; }
+        public string Message { get; set; }
 
-	    public string Message { get; set; }
+        public override EmailType Type
+        {
+            get { return EmailType.ContactUs; }
+        }
 
-	    public override EmailType Type
-	    {
-		    get { return EmailType.ContactUs; }
-	    }
+        public static ContactUsEmailModel Create()
+        {
+            return new ContactUsEmailModel("ContactUsEmail");
+        }
     }
 }

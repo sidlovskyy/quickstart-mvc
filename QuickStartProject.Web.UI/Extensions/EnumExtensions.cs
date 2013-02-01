@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 
-namespace Logfox.Web.UI.Extensions
+namespace QuickStartProject.Web.UI.Extensions
 {
     public static class EnumExtensions
     {
@@ -12,8 +12,8 @@ namespace Logfox.Web.UI.Extensions
             if (fi != null)
             {
                 DescriptionAttribute[] attributes =
-                    (DescriptionAttribute[])fi.GetCustomAttributes(
-                        typeof(DescriptionAttribute),
+                    (DescriptionAttribute[]) fi.GetCustomAttributes(
+                        typeof (DescriptionAttribute),
                         false);
 
                 if (attributes.Length > 0)

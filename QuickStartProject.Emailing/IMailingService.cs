@@ -1,9 +1,9 @@
-﻿using Logfox.Emailing.Models;
+﻿using QuickStartProject.Emailing.Models;
 
-namespace Logfox.Emailing
+namespace QuickStartProject.Emailing
 {
     public interface IMailingService
     {
-	    void SentContactUsEmail(ContactUsEmailModel model);
+        void SentContactUsEmail(ContactUsEmailModel model);
     }
 }

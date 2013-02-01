@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 
-namespace Logfox.Web.UI.Controllers
+namespace QuickStartProject.Web.UI.Controllers
 {
-	public class HomeController : BaseController
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {

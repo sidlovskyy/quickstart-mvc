@@ -1,4 +1,4 @@
-﻿namespace Logfox.Web.UI.Security
+﻿namespace QuickStartProject.Web.UI.Security
 {
     internal class HashObj
     {

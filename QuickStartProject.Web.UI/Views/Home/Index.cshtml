@@ -11,11 +11,11 @@
     @Scripts.Render("~/bundles/jqplot")
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $.ajax('@Url.Action("TodaysLogs", "Dashboard")', {
                 method: 'GET',
                 dataType: 'json',
-                success: function (logs) {
+                success: function(logs) {
                     renderLogLevelPiePlot(logs, 'todaysLogs', "Today's Logs Statistic");
                 }
             });
@@ -23,15 +23,15 @@
             $.ajax('@Url.Action("AllTimesLogs", "Dashboard")', {
                 method: 'GET',
                 dataType: 'json',
-                success: function (logs) {
+                success: function(logs) {
                     renderLogLevelPiePlot(logs, 'allTimesLogs', "All Logs Statistic");
                 }
             });
-            
+
             $.ajax('@Url.Action("LastPeriodLogs", "Dashboard")', {
                 method: 'GET',
                 dataType: 'json',
-                success: function (logs) {
+                success: function(logs) {
                     renderLogDatebarPlot(logs, 'latestLogsCount', "Latest Period Logs Statistic");
                 }
             });
@@ -51,20 +51,20 @@
                         renderer: jQuery.jqplot.PieRenderer,
                         rendererOptions: {
                             // Put data labels on the pie slices.
-                          // By default, labels show the percentage of the slice.
+                            // By default, labels show the percentage of the slice.
                             showDataLabels: true
                         }
-                    },                    
-                    series:[{
-                            rendererOptions: {
-                                // Speed up the animation a little bit.
-                                // This is a number of milliseconds. 
-                                // Default for bar series is 3000. 
-                                animation: {
-                                    speed: 2500
-                                }
+                    },
+                    series: [{
+                        rendererOptions: {
+                            // Speed up the animation a little bit.
+                            // This is a number of milliseconds. 
+                            // Default for bar series is 3000. 
+                            animation: {
+                                speed: 2500
                             }
-                    }],                    
+                        }
+                    }],
                     legend: { show: true, location: 'e' }
                 }
             );
@@ -82,10 +82,10 @@
             }
             return logStatisticArray;
         }
-        
+
         function renderLogDatebarPlot(data, to, title) {
-            
-            var dataArray = tojqLogDatePlotSeriesData(data);            
+
+            var dataArray = tojqLogDatePlotSeriesData(data);
             $.jqplot(to, [dataArray], {
                 title: title,
                 // Turns on animation for all series in this plot.
@@ -138,7 +138,7 @@
             });
 
         }
-        
+
         function tojqLogDatePlotSeriesData(logsStatistiList) {
             var logStatisticArray = new Array();
             for (var i = 0; i < logsStatistiList.length; i++) {

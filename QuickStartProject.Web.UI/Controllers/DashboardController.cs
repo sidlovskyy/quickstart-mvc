@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Web.UI.Extensions;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Web.UI.Extensions;
 
-namespace Logfox.Web.UI.Controllers
+namespace QuickStartProject.Web.UI.Controllers
 {
     public class DashboardController : Controller
     {
@@ -33,10 +33,10 @@ namespace Logfox.Web.UI.Controllers
         {
             var todayDate = DateTime.UtcNow.Date;
             var results = _logRepository.Query(log => log.CreatedDate >= todayDate)
-                .GroupBy(log => log.Level, (level, logs) => new { Level = level, Count = logs.Count() })
+                .GroupBy(log => log.Level, (level, logs) => new {Level = level, Count = logs.Count()})
                 .OrderBy(logStatistic => logStatistic.Level)
                 .ToList()
-                .Select(log => new { Level = log.Level.GetDescription(), log.Count });
+                .Select(log => new {Level = log.Level.GetDescription(), log.Count});
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }
@@ -49,10 +49,10 @@ namespace Logfox.Web.UI.Controllers
         {
             var period = DateTime.UtcNow.Date.AddDays(-7);
             var results = _logRepository.Query(log => log.CreatedDate >= period)
-                .GroupBy(log => log.CreatedDate.Date, (date, logs) => new { LogDate = date, Count = logs.Count() })
+                .GroupBy(log => log.CreatedDate.Date, (date, logs) => new {LogDate = date, Count = logs.Count()})
                 .OrderBy(logStatistic => logStatistic.LogDate)
                 .ToList()
-                .Select(logStatistic => new { Date = logStatistic.LogDate.ToString("yyyy-MM-dd"), logStatistic.Count });
+                .Select(logStatistic => new {Date = logStatistic.LogDate.ToString("yyyy-MM-dd"), logStatistic.Count});
 
             return Json(results, JsonRequestBehavior.AllowGet);
         }

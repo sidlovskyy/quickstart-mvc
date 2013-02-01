@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
-using Logfox.Domain.Entities;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Web.UI.Api.v1.Models
+namespace QuickStartProject.Web.UI.Api.v1.Models
 {
     [DataContract(Name = "Log")]
     public class LogEntryModel
@@ -14,11 +14,11 @@ namespace Logfox.Web.UI.Api.v1.Models
         }
 
         [Required]
-        [DataMember(IsRequired=true)] 
+        [DataMember(IsRequired = true)]
         public LogLevel Level { get; set; }
 
         [Required]
-        [DataMember(IsRequired=true)] 
+        [DataMember(IsRequired = true)]
         public string Message { get; set; }
 
         [DataMember]

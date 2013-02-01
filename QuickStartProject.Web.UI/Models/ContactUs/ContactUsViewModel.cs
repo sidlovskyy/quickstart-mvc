@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataAnnotationsExtensions;
 
-namespace Logfox.Web.UI.Models.ContactUs
+namespace QuickStartProject.Web.UI.Models.ContactUs
 {
     public class ContactUsViewModel : BaseViewModel
     {
@@ -24,6 +24,6 @@ namespace Logfox.Web.UI.Models.ContactUs
         [Required]
         [StringLength(50000)]
         [Display(Name = "Message")]
-        public string Message { get; set; }       
+        public string Message { get; set; }
     }
 }

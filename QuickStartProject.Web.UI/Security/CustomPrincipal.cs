@@ -1,19 +1,23 @@
 using System.Security.Principal;
 
-namespace Logfox.Web.UI.Security
+namespace QuickStartProject.Web.UI.Security
 {
     public class CustomPrincipal : IPrincipal
     {
-        public IIdentity Identity { get; private set; }
-
         public CustomPrincipal(IIdentity identity)
         {
             Identity = identity;
         }
 
+        #region IPrincipal Members
+
+        public IIdentity Identity { get; private set; }
+
         public bool IsInRole(string role)
         {
             return true;
         }
+
+        #endregion
     }
 }

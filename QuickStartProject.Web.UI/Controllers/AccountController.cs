@@ -1,25 +1,25 @@
 ﻿using System;
 using System.Web.Mvc;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Web.UI.Models.Account;
-using Logfox.Web.UI.Security;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Web.UI.Models.Account;
+using QuickStartProject.Web.UI.Security;
 
-namespace Logfox.Web.UI.Controllers
+namespace QuickStartProject.Web.UI.Controllers
 {
-	public class AccountController : BaseController
-	{
-		private readonly IRepository<User, Guid> _userRepository;
+    public class AccountController : BaseController
+    {
+        private readonly IRepository<User, Guid> _userRepository;
 
-        public AccountController(IRepository<User, Guid> userRepository) 
-		{
-			_userRepository = userRepository;
-		}
+        public AccountController(IRepository<User, Guid> userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
         [HttpGet]
         public ActionResult Logon()
         {
-            return View("Index", new AccountViewModel() );
+            return View("Index", new AccountViewModel());
         }
 
         [HttpPost]
@@ -43,7 +43,7 @@ namespace Logfox.Web.UI.Controllers
 
         private static bool AuthorizeUser(AccountViewModel accountModel, User user)
         {
-            if(user != null && PasswordHash.ValidatePassword(accountModel.Password, user.Password, user.Salt))
+            if (user != null && PasswordHash.ValidatePassword(accountModel.Password, user.Password, user.Salt))
             {
                 SimpleSessionPersister.Username = accountModel.Username;
                 return true;
@@ -67,7 +67,7 @@ namespace Logfox.Web.UI.Controllers
         [HttpPost]
         public ActionResult Register(UserViewModel user)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 ShowError("Please provide all required fields!");
                 MergeModelStateOnNextCall();
@@ -89,13 +89,13 @@ namespace Logfox.Web.UI.Controllers
         {
             var hashData = PasswordHash.CreateHash(userViewModel.Password);
             return new User
-            {
-                Name = userViewModel.Name,
-                Company = userViewModel.Company,
-                Email =  userViewModel.Email,
-                Password = hashData.Hash,
-                Salt = hashData.Salt
-            };
+                       {
+                           Name = userViewModel.Name,
+                           Company = userViewModel.Company,
+                           Email = userViewModel.Email,
+                           Password = hashData.Hash,
+                           Salt = hashData.Salt
+                       };
         }
-	}
+    }
 }

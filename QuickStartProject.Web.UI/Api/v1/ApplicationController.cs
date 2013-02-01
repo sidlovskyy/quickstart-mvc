@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Net.Http;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Web.UI.Api.v1.Models;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Web.UI.Api.v1.Models;
 
-namespace Logfox.Web.UI.Api.v1
+namespace QuickStartProject.Web.UI.Api.v1
 {
     public class ApplicationController : BaseApiController
     {
-        public ApplicationController(IRepository<Application, Guid> applicationRepository) 
+        public ApplicationController(IRepository<Application, Guid> applicationRepository)
             : base(applicationRepository)
-        { }
+        {
+        }
 
         public HttpResponseMessage Get(string acc, string app)
         {
@@ -22,12 +23,12 @@ namespace Logfox.Web.UI.Api.v1
                 if ((application != null) && (application.Owner.Id == accId))
                 {
                     var applicationModel = new ApplicationModel
-                    {
-                        Name = application.Name,
-                        Description = application.Description,
-                        Level = application.LogLevel,
-                        CreatedDate = application.CreatedDate,
-                    };
+                                               {
+                                                   Name = application.Name,
+                                                   Description = application.Description,
+                                                   Level = application.LogLevel,
+                                                   CreatedDate = application.CreatedDate,
+                                               };
                     return Result(applicationModel);
                 }
             }

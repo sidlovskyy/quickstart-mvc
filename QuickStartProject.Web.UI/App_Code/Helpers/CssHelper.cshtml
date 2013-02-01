@@ -1,5 +1,4 @@
-﻿@using Logfox.Domain.Entities
-
+﻿@using QuickStartProject.Domain.Entities
 @helper LogLevelCss(LogLevel level)
 {
     switch (level)
@@ -13,7 +12,7 @@
         case LogLevel.Warning:
             @: warning
             break;
-        case LogLevel.Error:        
+        case LogLevel.Error:
             @: error
             break;
         case LogLevel.Fatal:

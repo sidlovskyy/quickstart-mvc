@@ -1,12 +1,16 @@
 using DataAnnotationsExtensions.ClientValidation;
-using Logfox.Web.UI.App_Start;
+using QuickStartProject.Web.UI.App_Start;
+using WebActivator;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(RegisterClientValidationExtensions), "Start")]
- 
-namespace Logfox.Web.UI.App_Start {
-    public static class RegisterClientValidationExtensions {
-        public static void Start() {
-            DataAnnotationsModelValidatorProviderExtensions.RegisterValidationExtensions();            
+[assembly: PreApplicationStartMethod(typeof (RegisterClientValidationExtensions), "Start")]
+
+namespace QuickStartProject.Web.UI.App_Start
+{
+    public static class RegisterClientValidationExtensions
+    {
+        public static void Start()
+        {
+            DataAnnotationsModelValidatorProviderExtensions.RegisterValidationExtensions();
         }
     }
 }

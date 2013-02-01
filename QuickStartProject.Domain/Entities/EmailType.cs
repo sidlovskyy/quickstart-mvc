@@ -1,9 +1,9 @@
-namespace Logfox.Domain.Entities
+namespace QuickStartProject.Domain.Entities
 {
-	public enum EmailType
-	{
-		Unknown = 0,
-		UserRegistered = 1,
-		ContactUs = 2,
-	}
+    public enum EmailType
+    {
+        Unknown = 0,
+        UserRegistered = 1,
+        ContactUs = 2,
+    }
 }

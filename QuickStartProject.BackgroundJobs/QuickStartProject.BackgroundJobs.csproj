@@ -73,11 +73,11 @@
     <Compile Include="Jobs\ClearLogsJob.cs" />
     <Compile Include="Jobs\EmailSenderJob.cs" />
     <Compile Include="Jobs\JobBase.cs" />
-    <Compile Include="LogfoxService.cs">
+    <Compile Include="QuickStartProjectService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LogfoxService.Designer.cs">
-      <DependentUpon>LogfoxService.cs</DependentUpon>
+    <Compile Include="QuickStartProjectService.Designer.cs">
+      <DependentUpon>QuickStartProjectService.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace Logfox.Web.UI.Security
+namespace QuickStartProject.Web.UI.Security
 {
     public static class SimpleSessionPersister
     {

@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Logfox.Domain.Entities
+namespace QuickStartProject.Domain.Entities
 {
     public class Application : GuidIdDomainEntity
     {
-        private string _name;
-        private User _owner;
         private DateTime _createdDate;
         private LogLevel _logLevel;
         //private Guid _ownerId;
+        private ICollection<LogEntry> _logs;
+        private string _name;
         private AppOperatingSystem _operatingSystem;
-	    private ICollection<LogEntry> _logs;
+        private User _owner;
 
-	    protected Application() {}
+        protected Application()
+        {
+        }
 
         public Application(User owner, string name, AppOperatingSystem operatingSystem)
         {
@@ -27,7 +29,7 @@ namespace Logfox.Domain.Entities
             //_ownerId = owner.Id;
             _name = name;
             _operatingSystem = operatingSystem;
-            _logLevel = LogLevel.Error;            
+            _logLevel = LogLevel.Error;
             _createdDate = DateTime.UtcNow;
         }
 
@@ -72,8 +74,8 @@ namespace Logfox.Domain.Entities
 
         public virtual ICollection<LogEntry> Logs
         {
-	        get { return _logs ?? (_logs = new Collection<LogEntry>()); }
-	        protected set { _logs = value; }
+            get { return _logs ?? (_logs = new Collection<LogEntry>()); }
+            protected set { _logs = value; }
         }
     }
 }

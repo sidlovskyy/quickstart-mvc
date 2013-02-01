@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Logfox.Web.UI.Models.Account
+namespace QuickStartProject.Web.UI.Models.Account
 {
     public class AccountViewModel
     {

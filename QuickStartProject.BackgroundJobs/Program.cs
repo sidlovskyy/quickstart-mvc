@@ -1,20 +1,20 @@
 ﻿using System.ServiceProcess;
 
-namespace Logfox.BackgroundJobs
+namespace QuickStartProject.BackgroundJobs
 {
-	static class Program
-	{
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		static void Main()
-		{
-			ServiceBase[] ServicesToRun;
-			ServicesToRun = new ServiceBase[] 
-            { 
-                new LogfoxService() 
-            };
-			ServiceBase.Run(ServicesToRun);
-		}
-	}
+    internal static class Program
+    {
+        /// <summary>
+        /// 	The main entry point for the application.
+        /// </summary>
+        private static void Main()
+        {
+            ServiceBase[] ServicesToRun;
+            ServicesToRun = new ServiceBase[]
+                                {
+                                    new QuickStartProjectService()
+                                };
+            ServiceBase.Run(ServicesToRun);
+        }
+    }
 }

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Logfox.Domain.Entities;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Web.UI.Models.Application
+namespace QuickStartProject.Web.UI.Models.Application
 {
     public class ApplicationViewModel
     {
-        public ApplicationViewModel() {}
+        public ApplicationViewModel()
+        {
+        }
 
         public ApplicationViewModel(Domain.Entities.Application application)
         {

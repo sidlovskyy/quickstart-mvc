@@ -1,15 +1,17 @@
 using System.Security.Principal;
 
-namespace Logfox.Web.UI.Security
+namespace QuickStartProject.Web.UI.Security
 {
     public class CustomIdentity : IIdentity
     {
-        public string Name { get; private set; }
-
         public CustomIdentity(string name)
         {
             Name = name;
         }
+
+        #region IIdentity Members
+
+        public string Name { get; private set; }
 
         public string AuthenticationType
         {
@@ -20,5 +22,7 @@ namespace Logfox.Web.UI.Security
         {
             get { return !string.IsNullOrEmpty(Name); }
         }
+
+        #endregion
     }
 }

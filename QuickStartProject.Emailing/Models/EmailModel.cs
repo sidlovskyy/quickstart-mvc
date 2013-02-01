@@ -1,37 +1,39 @@
 ﻿using System.Configuration;
 using System.Net.Configuration;
-using Logfox.Domain.Entities;
+using QuickStartProject.Domain.Entities;
 using Email = Postal.Email;
 
-namespace Logfox.Emailing.Models
+namespace QuickStartProject.Emailing.Models
 {
-	public abstract class EmailModel : Email
-	{
-		private string _from;
+    public abstract class EmailModel : Email
+    {
+        private string _from;
 
-		internal EmailModel(string templateName) : base(templateName) { }
-		
-		public string From
-		{
-			get
-			{
-				if (_from != null)
-				{
-					return _from;
-				}
+        internal EmailModel(string templateName) : base(templateName)
+        {
+        }
 
-				var smtpSection = (SmtpSection) ConfigurationManager.GetSection("system.net/mailSettings/smtp");
-				return smtpSection.From;
-			}
-			set { _from = value; }
-		}
+        public string From
+        {
+            get
+            {
+                if (_from != null)
+                {
+                    return _from;
+                }
 
-		public string To { get; set; }
+                var smtpSection = (SmtpSection) ConfigurationManager.GetSection("system.net/mailSettings/smtp");
+                return smtpSection.From;
+            }
+            set { _from = value; }
+        }
 
-		public string Subject { get; set; }
+        public string To { get; set; }
 
-		public string CC { get; set; }
+        public string Subject { get; set; }
 
-		public abstract EmailType Type { get; }
-	}
+        public string CC { get; set; }
+
+        public abstract EmailType Type { get; }
+    }
 }

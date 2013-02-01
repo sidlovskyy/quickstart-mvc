@@ -1,5 +1,6 @@
 ﻿@using Helpers
-@model Logfox.Domain.Auxilary.PagedList<Logfox.Domain.Entities.Application>
+@using QuickStartProject.Web.UI.Extensions
+@model QuickStartProject.Domain.Auxilary.PagedList<QuickStartProject.Domain.Entities.Application>
 
 @{
     ViewBag.Title = "Applications";
@@ -32,38 +33,39 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model) {
-        <tr>        
-            <td>
-                @Html.ActionLink(item.Name, "Edit", new {item.Id})
-            </td>
-            <td>
-                @item.Description.TruncateToLength(100)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LogLevel)
-            </td>
-            <td>
-                @item.OperatingSystem.GetDescription()
-            </td>        
-            <td>
-                @item.CreatedDate.ToShortDateString()
-            </td>
-            <td>
-                @Html.ActionLink("logs", "Index", "Log", new {app = item.Id}, null)
-            </td>
-            <td>
-                @Html.ActionLink("delete", "DeleteConfirm", new {item.Id})
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model)
+        {
+            <tr>        
+                <td>
+                    @Html.ActionLink(item.Name, "Edit", new {item.Id})
+                </td>
+                <td>
+                    @item.Description.TruncateToLength(100)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogLevel)
+                </td>
+                <td>
+                    @item.OperatingSystem.GetDescription()
+                </td>        
+                <td>
+                    @item.CreatedDate.ToShortDateString()
+                </td>
+                <td>
+                    @Html.ActionLink("logs", "Index", "Log", new {app = item.Id}, null)
+                </td>
+                <td>
+                    @Html.ActionLink("delete", "DeleteConfirm", new {item.Id})
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-@PagingHelper.Paging(Model, page => Url.Action("Index", new { page }))
+@PagingHelper.Paging(Model, page => Url.Action("Index", new {page}))
 
 <div class="row">
     <div class="span12">

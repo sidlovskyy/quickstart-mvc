@@ -1,6 +1,6 @@
 ﻿@using Helpers
-@using Logfox.Web.UI.Models.Log
-@model IndexViewModel
+@using QuickStartProject.Web.UI.Extensions
+@model QuickStartProject.Web.UI.Models.Log.IndexViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -41,64 +41,67 @@
         </tr>
     </thead>
     <tbody>
-    @foreach (var item in Model.Logs) {
-        <tr>
-            <td class="log-app-name-column">
-                @Html.ActionLink(item.Application.Name, "Edit", "Application", new {item.Application.Id}, null)
-            </td>
-            <td class="log-level-column">
-                <div class="@CssHelper.LogLevelCss(item.Level)">@item.Level.GetDescription()</div>
-            </td>
-            <td class="log-message-column">
-                @item.Message.TruncateToLength(100)
-            </td>
-            <td class="log-os-column">
-                @Html.DisplayFor(modelItem => item.OS)
-            </td>
-            <td class="log-device-type-column">
-                @Html.DisplayFor(modelItem => item.DeviceType)
-            </td>
-            <td class="log-device-id-column">
-                 @item.DeviceId.TruncateToLength(100)
-            </td>
-            <td class="log-posted-column">
-                @item.CreatedDate.ToPassedTimeString()
-            </td>
-            <td class="log-details-column">
-                @Html.ActionLink("details", "Details", new { id=item.Id })
-            </td>
-        </tr>
-    }
+        @foreach (var item in Model.Logs)
+        {
+            <tr>
+                <td class="log-app-name-column">
+                    @Html.ActionLink(item.Application.Name, "Edit", "Application", new {item.Application.Id}, null)
+                </td>
+                <td class="log-level-column">
+                    <div class="@CssHelper.LogLevelCss(item.Level)">@item.Level.GetDescription()</div>
+                </td>
+                <td class="log-message-column">
+                    @item.Message.TruncateToLength(100)
+                </td>
+                <td class="log-os-column">
+                    @Html.DisplayFor(modelItem => item.OS)
+                </td>
+                <td class="log-device-type-column">
+                    @Html.DisplayFor(modelItem => item.DeviceType)
+                </td>
+                <td class="log-device-id-column">
+                    @item.DeviceId.TruncateToLength(100)
+                </td>
+                <td class="log-posted-column">
+                    @item.CreatedDate.ToPassedTimeString()
+                </td>
+                <td class="log-details-column">
+                    @Html.ActionLink("details", "Details", new {id = item.Id})
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
-@PagingHelper.Paging(Model.Logs, page => Url.Action("Index", 
-    new {
-            Model.SearchCriteria.App,
-            Model.SearchCriteria.Level,
-            Model.SearchCriteria.After,
-            Model.SearchCriteria.Before,
-            Model.SearchCriteria.DeviceType,
-            Model.SearchCriteria.DeviceId,
-            Model.SearchCriteria.OS,
-            Model.SearchCriteria.Text,
-            page
-    }))
+@PagingHelper.Paging(Model.Logs, page => Url.Action("Index",
+                                                    new
+                                                        {
+                                                            Model.SearchCriteria.App,
+                                                            Model.SearchCriteria.Level,
+                                                            Model.SearchCriteria.After,
+                                                            Model.SearchCriteria.Before,
+                                                            Model.SearchCriteria.DeviceType,
+                                                            Model.SearchCriteria.DeviceId,
+                                                            Model.SearchCriteria.OS,
+                                                            Model.SearchCriteria.Text,
+                                                            page
+                                                        }))
 
 <div class="row">
     <div class="span12">
         @Html.ActionLink("Export to *.CSV", "Export",
-            new {
-                    Model.SearchCriteria.App,
-                    Model.SearchCriteria.Level,
-                    Model.SearchCriteria.After,
-                    Model.SearchCriteria.Before,
-                    Model.SearchCriteria.DeviceType,
-                    Model.SearchCriteria.DeviceId,
-                    Model.SearchCriteria.OS,
-                    Model.SearchCriteria.Text
-                }, 
-            new { @class = "btn btn-large btn-custom pull-right" })
+                         new
+                             {
+                                 Model.SearchCriteria.App,
+                                 Model.SearchCriteria.Level,
+                                 Model.SearchCriteria.After,
+                                 Model.SearchCriteria.Before,
+                                 Model.SearchCriteria.DeviceType,
+                                 Model.SearchCriteria.DeviceId,
+                                 Model.SearchCriteria.OS,
+                                 Model.SearchCriteria.Text
+                             },
+                         new {@class = "btn btn-large btn-custom pull-right"})
     </div>
 </div>
 
@@ -107,7 +110,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jqueryui")
 
-    <script type="text/javascript">        
+    <script type="text/javascript">
         $("#after").datepicker($.datepicker.regional[""]);
         $("#before").datepicker($.datepicker.regional[""]);
     </script>

@@ -1,8 +1,8 @@
-﻿using Logfox.Domain.Entities;
-using System;
+﻿using System;
 using System.Runtime.Serialization;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Web.UI.Api.v1.Models
+namespace QuickStartProject.Web.UI.Api.v1.Models
 {
     [DataContract(Name = "Application")]
     public class ApplicationModel

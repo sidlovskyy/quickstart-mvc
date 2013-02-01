@@ -1,5 +1,4 @@
-﻿@using Logfox.Domain.Auxilary
-
+﻿@using QuickStartProject.Domain.Auxilary
 @helper Paging(IPagedList pagedList, Func<int, string> pageUrlComposer)
 {
     var list = pagedList;
@@ -28,7 +27,7 @@
                 {
                     if (pageIndex == list.PageIndex)
                     {
-                        <li><a href="@pageUrlComposer(pageIndex)" class="selected">@pageIndex</a></li>                        
+                        <li><a href="@pageUrlComposer(pageIndex)" class="selected">@pageIndex</a></li>
                     }
                     else
                     {

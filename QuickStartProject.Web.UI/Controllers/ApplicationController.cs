@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using Logfox.Domain.Auxilary;
-using Logfox.Domain.Entities;
-using Logfox.Domain.Repository;
-using Logfox.Web.UI.Filters;
-using Logfox.Web.UI.Models.Application;
+using QuickStartProject.Domain.Auxilary;
+using QuickStartProject.Domain.Entities;
+using QuickStartProject.Domain.Repository;
+using QuickStartProject.Web.UI.Filters;
+using QuickStartProject.Web.UI.Models.Application;
 
-namespace Logfox.Web.UI.Controllers
+namespace QuickStartProject.Web.UI.Controllers
 {
     [Authorization]
     public class ApplicationController : BaseController
@@ -50,16 +50,16 @@ namespace Logfox.Web.UI.Controllers
             }
 
             var app = new Application(currentUser, model.Name, model.OperatingSystem)
-            {
-                Description = model.Description, 
-                LogLevel = model.LogLevel
-            };
+                          {
+                              Description = model.Description,
+                              LogLevel = model.LogLevel
+                          };
 
             _applicationRepository.Save(app);
 
             ShowInformation("Application created successfully.");
             return RedirectToAction("Index");
-        }        
+        }
 
         [HttpGet]
         [BindCurrentUserTo("currentUser")]
@@ -73,13 +73,13 @@ namespace Logfox.Web.UI.Controllers
             }
 
             return View("Application", new ApplicationViewModel(application));
-        }        
+        }
 
         [HttpPost]
         [BindCurrentUserTo("currentUser")]
         public ActionResult Edit(User currentUser, ApplicationViewModel model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 MergeModelStateOnNextCall();
                 return RedirectToAction("Edit");

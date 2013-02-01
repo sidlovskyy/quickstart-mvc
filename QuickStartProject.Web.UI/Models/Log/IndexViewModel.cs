@@ -1,7 +1,7 @@
-﻿using Logfox.Domain.Auxilary;
-using Logfox.Domain.Entities;
+﻿using QuickStartProject.Domain.Auxilary;
+using QuickStartProject.Domain.Entities;
 
-namespace Logfox.Web.UI.Models.Log
+namespace QuickStartProject.Web.UI.Models.Log
 {
     public class IndexViewModel
     {

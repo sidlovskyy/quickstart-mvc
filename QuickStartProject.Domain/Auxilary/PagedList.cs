@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Logfox.Domain.Auxilary
+namespace QuickStartProject.Domain.Auxilary
 {
     /// <summary>
-    /// http://wekeroad.com/2007/12/10/aspnet-mvc-pagedlistt/
+    /// 	http://wekeroad.com/2007/12/10/aspnet-mvc-pagedlistt/
     /// </summary>
     public interface IPagedList
     {
