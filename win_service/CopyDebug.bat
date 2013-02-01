@@ -1,3 +1,3 @@
-xcopy  "..\Logfox.BackgroundJobs\bin\Debug\*.*" "bin\*.*" /S /Y
+xcopy  "..\QuickStartProject.BackgroundJobs\bin\Debug\*.*" "bin\*.*" /S /Y
 
 PAUSE

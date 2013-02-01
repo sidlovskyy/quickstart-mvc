@@ -1,3 +1,3 @@
-sc.exe create LogFox binPath= "%~dp0bin\Logfox.BackgroundJobs.exe" DisplayName= "Log Fox"
+sc.exe create QuickStartProject binPath= "%~dp0bin\QuickStartProject.BackgroundJobs.exe" DisplayName= "Quick Start Project"
 
 PAUSE

@@ -1,3 +1,3 @@
-sc.exe delete LogFox
+sc.exe delete QuickStartProject
 
 PAUSE
