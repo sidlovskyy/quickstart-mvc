@@ -1,0 +1,46 @@
+﻿@using Logfox.Domain.Auxilary
+
+@helper Paging(IPagedList pagedList, Func<int, string> pageUrlComposer)
+{
+    var list = pagedList;
+    const int siteRangeToShow = 2;
+    int firstPageToShow = list.PageIndex - siteRangeToShow;
+    if (firstPageToShow < 1)
+    {
+        firstPageToShow = 1;
+    }
+    int lastPageToShow = list.PageIndex + 2;
+    if (lastPageToShow > list.PageCount)
+    {
+        lastPageToShow = list.PageCount;
+    }
+
+    if (list.PageCount > 1)
+    {
+        <div class="pagination pagination-centered">
+            <ul>
+                @if (list.IsPreviousPage)
+                {
+                    <li><a href="@pageUrlComposer(1)">&lt;&lt;</a></li>
+                    <li><a href="@pageUrlComposer(list.PageIndex - 1)">&lt;</a></li>
+                }
+                @for (int pageIndex = firstPageToShow; pageIndex <= lastPageToShow; pageIndex++)
+                {
+                    if (pageIndex == list.PageIndex)
+                    {
+                        <li><a href="@pageUrlComposer(pageIndex)" class="selected">@pageIndex</a></li>                        
+                    }
+                    else
+                    {
+                        <li><a href="@pageUrlComposer(pageIndex)">@pageIndex</a></li>
+                    }
+                }
+                @if (list.IsNextPage)
+                {
+                    <li><a href="@pageUrlComposer(list.PageIndex + 1)">&gt;</a></li>
+                    <li><a href="@pageUrlComposer(list.PageCount)">&gt;&gt;</a></li>
+                }
+            </ul>
+        </div>
+    }
+}

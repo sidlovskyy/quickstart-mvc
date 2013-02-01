@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStartProject.Web.UI", "QuickStartProject.Web.UI\QuickStartProject.Web.UI.csproj", "{F13A7CA3-8E74-4481-8CF6-3F721FC63796}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStartProject.Domain", "QuickStartProject.Domain\QuickStartProject.Domain.csproj", "{CAE1A851-F03E-48CE-9050-99896E049DF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStartProject.Data.NHibernate", "QuickStartProject.Data.NHibernate\QuickStartProject.Data.NHibernate.csproj", "{C38E941D-12BD-4428-B182-526F646CE582}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4F937299-8EBD-45BD-A8BF-05CBDF90C398}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStartProject.BackgroundJobs", "QuickStartProject.BackgroundJobs\QuickStartProject.BackgroundJobs.csproj", "{1C880472-77D2-44E9-8E9F-B410BF00CAF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStartProject.Common", "QuickStartProject.Common\QuickStartProject.Common.csproj", "{219AFC5B-5B94-4C54-8B42-D7050F1FAD85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStartProject.Emailing", "QuickStartProject.Emailing\QuickStartProject.Emailing.csproj", "{00DF385C-FC1A-49FB-ABBB-F8A398041A25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F13A7CA3-8E74-4481-8CF6-3F721FC63796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13A7CA3-8E74-4481-8CF6-3F721FC63796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13A7CA3-8E74-4481-8CF6-3F721FC63796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13A7CA3-8E74-4481-8CF6-3F721FC63796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAE1A851-F03E-48CE-9050-99896E049DF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAE1A851-F03E-48CE-9050-99896E049DF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAE1A851-F03E-48CE-9050-99896E049DF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAE1A851-F03E-48CE-9050-99896E049DF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C38E941D-12BD-4428-B182-526F646CE582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C38E941D-12BD-4428-B182-526F646CE582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C38E941D-12BD-4428-B182-526F646CE582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C38E941D-12BD-4428-B182-526F646CE582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C880472-77D2-44E9-8E9F-B410BF00CAF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C880472-77D2-44E9-8E9F-B410BF00CAF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C880472-77D2-44E9-8E9F-B410BF00CAF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C880472-77D2-44E9-8E9F-B410BF00CAF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{219AFC5B-5B94-4C54-8B42-D7050F1FAD85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219AFC5B-5B94-4C54-8B42-D7050F1FAD85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219AFC5B-5B94-4C54-8B42-D7050F1FAD85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219AFC5B-5B94-4C54-8B42-D7050F1FAD85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00DF385C-FC1A-49FB-ABBB-F8A398041A25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00DF385C-FC1A-49FB-ABBB-F8A398041A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00DF385C-FC1A-49FB-ABBB-F8A398041A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00DF385C-FC1A-49FB-ABBB-F8A398041A25}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

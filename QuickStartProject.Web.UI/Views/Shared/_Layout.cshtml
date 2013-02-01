@@ -1,0 +1,105 @@
+﻿@using Logfox.Web.UI
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap/css", "~/Content/themes/base/css", "~/Content/css")
+    @RenderSection("css", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="@Url.Action("Index", "Home")" class="brand">
+                    <img src="@Url.Content("~/Content/images/Logo.png")"/>
+                </a>
+                <ul class="nav">
+                    <li class="@(ViewBag.MenuItem == "home" ? "active" : "")">
+                        @Html.ActionLink("Home", "Index", "Home")
+                    </li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="@(ViewBag.MenuItem == "logs" ? "active" : "")">
+                            @Html.ActionLink("Logs", "Index", "Log")
+                        </li>
+                        <li class="@(ViewBag.MenuItem == "applications" ? "active" : "")">
+                            @Html.ActionLink("Applications", "Index", "Application")
+                        </li>
+                    }
+                    <li class="@(ViewBag.MenuItem == "pricing" ? "active" : "")">
+                        @Html.ActionLink("Pricing", "Index", "Pricing")
+                    </li>
+                    <li class="@(ViewBag.MenuItem == "contact" ? "active" : "")">
+                        @Html.ActionLink("Contact Us", "Index", "ContactUs")
+                    </li>
+                </ul>
+
+                <ul class="nav pull-right">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            <a href="#" class="pull-right">@ViewBag.Username</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "pull-right" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="@(ViewBag.MenuItem == "login" ? "active" : "")">
+                            @Html.ActionLink("Logon", "Logon", "Account", null, new { @class = "pull-right" })
+                        </li>
+                        <li class="@(ViewBag.MenuItem == "register" ? "active" : "")">
+                            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "pull-right" })
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container clearfix">
+        <div class="content">
+            @if (TempData[Constants.ERROR] != null)
+            {
+                <div class="alert alert-error">
+                    <button data-dismiss="alert" class="close" type="button">×</button>
+                    @TempData[Constants.ERROR].ToString()
+                </div> 
+            }
+            @if (TempData[Constants.INFO] != null)
+            {
+                <div class="alert alert-info">
+                    <button data-dismiss="alert" class="close" type="button">×</button>
+                    @TempData[Constants.INFO].ToString()
+                </div> 
+            }
+
+            <div class="row">
+                <div class="span12 main-content">
+                    @RenderBody()
+                </div>
+            </div>
+
+        </div>
+        <!--end of center content-->
+        <div class="row" id="footer">
+            <div class="span12">
+                <div id="footer-links-container" class="pull-right">
+                    @Html.ActionLink("Home", "Index", "Home") |
+                    @Html.ActionLink("Logs", "Index", "Log") |
+                    @Html.ActionLink("Applications", "Index", "Application") |
+                    @Html.ActionLink("Contact Us", "Index", "ContactUs")
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

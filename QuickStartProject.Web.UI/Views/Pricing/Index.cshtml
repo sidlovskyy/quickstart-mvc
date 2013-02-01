@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.MenuItem = "pricing";
+}
+
+<legend>Pricing</legend>
+<div>
+    <div class="first-block">
+        <div class="first-block-border">
+            <span class="price-text span1">Price: </span>
+
+            <span class="price-value span1"></span>
+        </div>
+    </div>
+    <div class="second-block">
+        <div class="storage-slider" id="sliderStorage"></div>
+        <div class="time-slider" id="sliderTime"></div>
+    </div>
+</div>
+
+@section css {
+    @Styles.Render("~/Content/qtip/css")
+}
+
+@section scripts {
+
+    @Scripts.Render("~/bundles/jqueryui");
+    
+    <script type="text/javascript">
+
+        $(function () {
+
+            var priceCalculationInfo, storageIndex = 0, storageSlider, storageHandle, timeIndex = 0, timeSlider, timeHandle;
+            
+            function storageSliderUpdated(event, ui) {
+                storageIndex = ui.value;
+                storageSliderUpdateValue();
+            }
+            
+            function storageSliderUpdateValue() {
+                var storageValue = getStorageValueByIndex(storageIndex + 1);
+                storageHandle.qtip('option', 'content.text', '' + storageValue);
+                $(".price-value").html(getPriceValueByIndex(storageIndex + 1, timeIndex + 1));
+            }
+
+            function timeSliderUpdated(event, ui) {
+                timeIndex = ui.value;
+                timeSliderUpdateValue();
+            }
+            
+            function timeSliderUpdateValue() {
+                var timeValue = getTimeValueByIndex(timeIndex + 1);
+                timeHandle.qtip('option', 'content.text', '' + timeValue);
+                $(".price-value").html(getPriceValueByIndex(storageIndex + 1, timeIndex + 1));
+            }
+
+            function getStorageValueByIndex(index) {
+                var storageValue = 'None';
+                $.each(priceCalculationInfo.storageItems, function (i, value) {
+                    if (value.index == index) {
+                        storageValue = value.value;
+                    }
+                });
+                return storageValue;
+            }
+
+            function getTimeValueByIndex(index) {
+                var timeValue = 'None';
+                $.each(priceCalculationInfo.timeItems, function (i, value) {
+                    if (value.index == index) {
+                        timeValue = value.value;
+                    }
+                });
+                return timeValue;
+            }
+            
+            function getPriceValueByIndex(sIndex, tIndex) {
+                var priceValue = 'None';
+                $.each(priceCalculationInfo.priceItems, function (i, value) {
+                    if (value.storageIndex == sIndex && value.timeIndex == tIndex) {
+                        priceValue = value.value;
+                    }
+                });
+                return priceValue;
+            }
+            
+            function initSliders() {
+                $.ajax('@Url.Action("GetPricing")', {
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        debugger;
+                        priceCalculationInfo = data;
+                        
+                        storageSlider = $('#sliderStorage').slider({
+                            slide: storageSliderUpdated,
+                            orientation: "vertical",
+                            max: priceCalculationInfo.storageItems.length - 1
+                        });
+
+                        storageHandle = $('.ui-slider-handle', storageSlider);
+                        storageHandle.qtip({
+                            content: '' + storageSlider.slider('option', 'value'),
+                            position: {
+                                my: 'right center',
+                                at: 'center left',
+                                container: storageHandle
+                            },
+                            hide: false,
+                            show: { ready: true },
+                            style: {
+                                classes: 'ui-tooltip-slider',
+                                widget: true
+                            }
+                        });
+
+                        timeSlider = $('#sliderTime').slider({
+                            slide: timeSliderUpdated,
+                            orientation: "vertical",
+                            max: priceCalculationInfo.timeItems.length - 1
+                        });
+
+                        timeHandle = $('.ui-slider-handle', timeSlider);
+                        timeHandle.qtip({
+                            content: '' + timeSlider.slider('option', 'value'),
+                            position: {
+                                my: 'left center',
+                                at: 'center right',
+                                container: timeHandle
+                            },
+                            hide: false,
+                            show: { ready: true },
+                            style: {
+                                classes: 'ui-tooltip-slider',
+                                widget: true
+                            }
+                        });
+
+                        storageSliderUpdateValue();
+                        timeSliderUpdateValue();
+                    }
+                });
+            }
+
+            initSliders();
+        });
+    
+    </script>
+
+}

@@ -1,0 +1,18 @@
+﻿@model Logfox.Web.UI.Models.Log.LogSearchCriteria
+
+@using (Html.BeginForm("Index", "Log", FormMethod.Get, new { id="log-search-form", @class="form-backgrounded" }))
+{
+    <div class="form-inline">
+        @Html.DropDownListFor(model => model.AvailableApplications, app => app.Key, app => app.Value, model => model.App, new { @class = "input-medium" }, true, "Application...")
+        @Html.TextBoxFor(model => model.After, new { id = "after", placeholder = "Posted after...", @class = "input-medium" })        
+        @Html.DropDownListFor(model => model.AvailableDeviceTypes, dt => dt, dt => dt, model => model.DeviceType, new { @class = "input-medium" }, true, "Device type...")        
+        @Html.DropDownListFor(model => model.AvailableOperatingSystems, os => os, os => os, model => model.OS, new { @class = "input-medium" }, true, "OS...")
+    </div>
+    <div class="form-inline">
+        @Html.EnumDropDownListFor(model => model.Level, new { @class = "input-medium" }, true, true, "Min log level...")        
+        @Html.TextBoxFor(model => model.Before, new { id = "before", placeholder = "Posted before...", @class = "input-medium" })
+        @Html.DropDownListFor(model => model.AvailableDeviceIds, di => di, di => di, model => model.DeviceId, new { @class = "input-medium" }, true, "Device id...")
+        @Html.TextBoxFor(model => model.Text, new { placeholder = "Message text...", @class = "input-large" })
+        <input type="submit" value="Search" class="btn btn-custom btn-low" />
+    </div>    
+}

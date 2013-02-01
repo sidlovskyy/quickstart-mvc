@@ -1,0 +1,43 @@
+﻿@model Logfox.Domain.Auxilary.IPagedList
+@{
+    var list = Model;
+    const int siteRangeToShow = 2;
+    int firstPageToShow = list.PageIndex - siteRangeToShow;
+    if (firstPageToShow < 1)
+    {
+        firstPageToShow = 1;
+    }
+    int lastPageToShow = list.PageIndex + 2;
+    if (lastPageToShow > list.PageCount)
+    {
+        lastPageToShow = list.PageCount;
+    }
+}
+@if (list.PageCount > 1)
+{
+    <div class="pagination pagination-centered">
+        <ul>
+            @if (list.IsPreviousPage)
+            {
+                <li>@Html.ActionLink("<<", "Index", new { page = 1 })</li>
+                <li>@Html.ActionLink("<", "Index", new { page = list.PageIndex - 1 })</li>
+            }
+            @for (int pageIndex = firstPageToShow; pageIndex <= lastPageToShow; pageIndex++)
+            {
+                if (pageIndex == list.PageIndex)
+                {
+                    <li>@Html.ActionLink(pageIndex.ToString(), "Index", new { page = pageIndex }, new { @class = "selected" })</li>
+                }
+                else
+                {
+                    <li>@Html.ActionLink(pageIndex.ToString(), "Index", new { page = pageIndex })</li>
+                }
+            }
+            @if (list.IsNextPage)
+            {
+                <li>@Html.ActionLink(">", "Index", new { page = list.PageIndex + 1 })</li>
+                <li>@Html.ActionLink(">>", "Index", new { page = list.PageCount })</li>
+            }
+        </ul>
+    </div>
+}

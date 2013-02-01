@@ -1,0 +1,72 @@
+﻿@using Helpers
+@model Logfox.Domain.Auxilary.PagedList<Logfox.Domain.Entities.Application>
+
+@{
+    ViewBag.Title = "Applications";
+    ViewBag.MenuItem = "applications";
+}
+
+<table class="applications-list table table-striped table-hover table-bordered">
+    <thead>
+        <tr>        
+            <th class="app-name-column">
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th class="app-id-column">
+                Application Id
+            </th>
+            <th class="app-log-level-column">
+                Log Level
+            </th>
+            <th>
+                OS
+            </th>        
+            <th>
+                Created
+            </th>
+            <th></th>
+            <th></th>                       
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>        
+            <td>
+                @Html.ActionLink(item.Name, "Edit", new {item.Id})
+            </td>
+            <td>
+                @item.Description.TruncateToLength(100)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogLevel)
+            </td>
+            <td>
+                @item.OperatingSystem.GetDescription()
+            </td>        
+            <td>
+                @item.CreatedDate.ToShortDateString()
+            </td>
+            <td>
+                @Html.ActionLink("logs", "Index", "Log", new {app = item.Id}, null)
+            </td>
+            <td>
+                @Html.ActionLink("delete", "DeleteConfirm", new {item.Id})
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@PagingHelper.Paging(Model, page => Url.Action("Index", new { page }))
+
+<div class="row">
+    <div class="span12">
+        @Html.ActionLink("Add Application", "Create", null, new {@class = "btn btn-large btn-primary btn-custom pull-right"})
+    </div>
+</div>

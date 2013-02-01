@@ -1,0 +1,31 @@
+﻿@model Logfox.Domain.Entities.LogEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+	<div class="control-group">            
+		Application: @Html.ActionLink(Model.Application.Name, "Edit", "Application", null, new {id = Model.Application.Id})
+	</div>
+	<div class="control-group">            
+		Posted: @Html.DisplayFor(model => model.CreatedDate)
+	</div>
+	<div class="control-group">            
+		Level: @Model.Level.GetDescription()
+	</div>
+	<div class="control-group">            
+		OS: @Model.OS
+	</div>    
+	<div class="control-group">            
+		DeviceType: @Model.DeviceType
+	</div>
+	<div class="control-group">            
+		Device Id: @Model.DeviceId
+	</div>
+	<div class="control-group">            
+		Message: @Html.DisplayFor(model => model.Message)
+	</div>
+</div>
+
+@Html.ActionLink("Logs", "Index", null, new { @class = "btn btn-large btn-primary btn-custom" })

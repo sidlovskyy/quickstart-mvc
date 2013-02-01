@@ -1,0 +1,23 @@
+﻿@using Logfox.Domain.Entities
+
+@helper LogLevelCss(LogLevel level)
+{
+    switch (level)
+    {
+        case LogLevel.Debug:
+            @: debug
+            break;
+        case LogLevel.Info:
+            @: info
+            break;
+        case LogLevel.Warning:
+            @: warning
+            break;
+        case LogLevel.Error:        
+            @: error
+            break;
+        case LogLevel.Fatal:
+            @: fatal
+            break;
+    }
+}
