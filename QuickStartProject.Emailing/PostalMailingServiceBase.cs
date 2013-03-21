@@ -48,7 +48,7 @@ namespace QuickStartProject.Emailing
             {
                 string webApplicationPath = HttpContext.Current.Server.MapPath("~");
                 string currentDirectory = Path.GetDirectoryName(webApplicationPath);
-                string solutionRootDirectory = GetDirectoryInPath(currentDirectory, "QuickStart");
+				string solutionRootDirectory = GetDirectoryInPath(currentDirectory, "QuickStartProject");
                 viewsPath = Path.Combine(solutionRootDirectory, @"QuickStartProject.Emailing\Templates");
             }
 #endif
