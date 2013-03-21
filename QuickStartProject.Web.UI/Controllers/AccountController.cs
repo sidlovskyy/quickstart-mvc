@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.Security;
 using QuickStartProject.Domain.Entities;
 using QuickStartProject.Domain.Repository;
 using QuickStartProject.Web.UI.Models.Account;
@@ -45,7 +46,7 @@ namespace QuickStartProject.Web.UI.Controllers
         {
             if (user != null && PasswordHash.ValidatePassword(accountModel.Password, user.Password, user.Salt))
             {
-                SimpleSessionPersister.Username = accountModel.Username;
+                FormsAuthentication.SetAuthCookie(accountModel.Username, accountModel.Remember);
                 return true;
             }
             return false;
@@ -54,7 +55,7 @@ namespace QuickStartProject.Web.UI.Controllers
         [HttpGet]
         public ActionResult Logout()
         {
-            SimpleSessionPersister.Username = null;
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 
@@ -81,7 +82,7 @@ namespace QuickStartProject.Web.UI.Controllers
                 return RedirectToAction("Register");
             }
             _userRepository.Save(ToUser(user));
-            SimpleSessionPersister.Username = user.Email;
+            FormsAuthentication.SetAuthCookie(user.Email, false);
             return RedirectToAction("Index", "Home");
         }
 

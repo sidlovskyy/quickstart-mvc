@@ -13,5 +13,8 @@ namespace QuickStartProject.Web.UI.Models.Account
         [DisplayName("Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+		[DisplayName("Remember Me?")]
+		public bool Remember { get; set; }
     }
 }

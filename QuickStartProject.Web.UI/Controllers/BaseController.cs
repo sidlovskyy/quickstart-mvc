@@ -1,6 +1,5 @@
 ﻿using System.Configuration;
 using System.Web.Mvc;
-using QuickStartProject.Web.UI.Security;
 
 namespace QuickStartProject.Web.UI.Controllers
 {
@@ -19,15 +18,6 @@ namespace QuickStartProject.Web.UI.Controllers
         protected string GetAppSettingsValue(string key)
         {
             return ConfigurationManager.AppSettings[key];
-        }
-
-        protected override void OnAuthorization(AuthorizationContext filterContext)
-        {
-            if (!string.IsNullOrEmpty(SimpleSessionPersister.Username))
-            {
-                filterContext.HttpContext.User = new CustomPrincipal(new CustomIdentity(SimpleSessionPersister.Username));
-            }
-            base.OnAuthorization(filterContext);
         }
 
         protected void MergeModelState()
